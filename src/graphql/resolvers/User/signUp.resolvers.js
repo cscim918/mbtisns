@@ -1,4 +1,5 @@
 const models = require('../../../models');
+const createJWT = require('../../../utils/createJWT');
 
 const resolvers = {
   Mutation: {
@@ -8,10 +9,10 @@ const resolvers = {
           ...args,
         });
         if (createUser) {
-          //   const token = createJWT(createUser.id);
+          const token = createJWT(createUser.id);
           return {
             ok: true,
-            token: '',
+            token,
             error: null,
           };
         }

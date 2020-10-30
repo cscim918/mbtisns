@@ -9,7 +9,7 @@ type Query {
 }
 
 type Mutation {
-  createReply(text: String): CreateReplyResponse!
+  createReply(text: String, user_id: Int, post_id: Int): CreateReplyResponse!
 }
 
 type GetReplyResponse {

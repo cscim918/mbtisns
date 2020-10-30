@@ -19,6 +19,7 @@ type Mutation {
     content_img: String
     content_text: String
     like: Int
+    user_id: Int
   ): CreatePostResponse!
 }
 
