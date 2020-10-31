@@ -21,6 +21,7 @@ type Mutation {
     like: Int
     user_id: Int
   ): CreatePostResponse!
+  updatePost(id: Int, title: String, content_img: String, content_text: String): UpdatePostResponse!
 }
 
 type GetPostResponse {
@@ -30,6 +31,12 @@ type GetPostResponse {
 }
 
 type CreatePostResponse {
+  ok: Boolean!
+  post: Post
+  error: String
+}
+
+type UpdatePostResponse {
   ok: Boolean!
   post: Post
   error: String
