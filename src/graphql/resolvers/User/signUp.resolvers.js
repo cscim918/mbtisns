@@ -9,10 +9,10 @@ const resolvers = {
           ...args,
         });
         if (createUser) {
-          const token = createJWT(createUser.id);
+          // const token = createJWT(createUser.id);
           return {
             ok: true,
-            token,
+            token: null,
             error: null,
           };
         }

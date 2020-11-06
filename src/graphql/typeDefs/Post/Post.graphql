@@ -5,6 +5,8 @@ type Post {
   content_img: String
   content_text: String
   like: Int
+  createdAt: Date
+  updatedAt: Date
   user_id: Int
 }
 
@@ -22,6 +24,7 @@ type Mutation {
     user_id: Int
   ): CreatePostResponse!
   updatePost(id: Int, title: String, content_img: String, content_text: String): UpdatePostResponse!
+  deletePost(id: Int, title: String): DeletePostResponse!
 }
 
 type GetPostResponse {
@@ -39,5 +42,10 @@ type CreatePostResponse {
 type UpdatePostResponse {
   ok: Boolean!
   post: Post
+  error: String
+}
+
+type DeletePostResponse {
+  ok: Boolean!
   error: String
 }

@@ -29,6 +29,13 @@ type Mutation {
     mbtiType: String
   ): SignUpResponse!
   signIn(email: String, password: String): SignInResponse!
+  updateUser(
+    id: Int
+    password: String
+    profileImg: String
+    nickname: String
+    mbtiType: String
+  ): UpdateUserResponse!
 }
 
 enum gender {
@@ -37,6 +44,12 @@ enum gender {
 }
 
 type GetUserResponse {
+  ok: Boolean!
+  user: User
+  error: String
+}
+
+type UpdateUserResponse {
   ok: Boolean!
   user: User
   error: String

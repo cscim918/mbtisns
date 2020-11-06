@@ -2,15 +2,15 @@ const models = require('../../../models');
 
 const resolvers = {
   Mutation: {
-    updatePost: async (_, args, {}) => {
+    updateUser: async (_, args, {}) => {
       try {
-        const existPost = await models.post.findOne({
+        const existUser = await models.user.findOne({
           where: {
             id: args.id,
           },
         });
-        if (existPost) {
-          await models.post.update(
+        if (existUser) {
+          await models.user.update(
             { ...args },
             {
               where: {
@@ -18,23 +18,22 @@ const resolvers = {
               },
             }
           );
-          const updatedPost = await models.post.findOne({
+          const updatedUser = await models.user.findOne({
             where: {
               id: args.id,
             },
           });
           return {
             ok: true,
-            post: updatedPost,
+            user: updatedUser,
             error: null,
           };
         }
       } catch (error) {
-        console.log(error);
         return {
           ok: false,
-          post: null,
-          error: 'update post failed',
+          user: null,
+          error: 'update user failed',
         };
       }
     },

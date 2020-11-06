@@ -1,27 +1,31 @@
 const models = require('../../../models');
 
 const resolvers = {
-  Query: {
-    getPost: async (_, { id }) => {
+  Mutation: {
+    deletePost: async (_, { id, title }) => {
       try {
         const existPost = await models.post.findOne({
           where: {
             id,
+            title,
           },
         });
         if (existPost) {
+          await models.post.destroy({
+            where: {
+              id,
+              title,
+            },
+          });
           return {
             ok: true,
-            post: existPost,
             error: null,
           };
         }
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
         return {
           ok: false,
-          post: null,
-          error: '해당되는 게시글이 없습니다.',
+          error: '게시글 삭제에 실패하였습니다.',
         };
       }
     },

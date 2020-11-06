@@ -3,11 +3,11 @@
 module.exports = (sequelize, DataTypes) => {
   const message = sequelize.define('message', {
     message: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
-    user_id: {
-      type: DataTypes.INTEGER
-    }
+    name: {
+      type: DataTypes.STRING,
+    },
   });
   return message;
 };

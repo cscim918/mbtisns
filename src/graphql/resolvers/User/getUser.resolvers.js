@@ -3,23 +3,27 @@ const models = require('../../../models');
 const resolvers = {
   Query: {
     getUser: async (_, { id }) => {
-      const existUser = await models.user.findOne({
-        where: {
-          id,
-        },
-      });
-      if (existUser) {
+      try {
+        const existUser = await models.user.findOne({
+          where: {
+            id,
+          },
+        });
+        if (existUser) {
+          return {
+            ok: true,
+            user: existUser,
+            error: null,
+          };
+        }
+      } catch (error) {
+        console.log(error);
         return {
-          ok: true,
-          user: existUser,
-          error: null,
+          ok: false,
+          user: null,
+          error: '해당되는 유저의 정보가 없습니다.',
         };
       }
-      return {
-        ok: false,
-        user: null,
-        error: '해당되는 유저의 정보가 없습니다.',
-      };
     },
   },
 };
