@@ -8,6 +8,11 @@ const sendMessage = (phoneNumber, key) => {
   const ncp_accessKey = process.env.NCP_SENS_ACCESSKEY;
   const ncp_secretKey = process.env.NCP_SENS_SECRETKEY;
 
+  let verify_code;
+  for (let i = 0; i < 6; i++) {
+    verify_code += parseInt(Math.random() * 10);
+  }
+
   const makeSignature = () => {
     var space = ' '; // one space
     var newLine = '\n'; // new line
@@ -45,7 +50,7 @@ const sendMessage = (phoneNumber, key) => {
     messages: [
       {
         to: 'phoneNumber',
-        content: 'hi',
+        content: `인증번호는 ${verifyCode}입니다.`,
       },
     ],
   };
